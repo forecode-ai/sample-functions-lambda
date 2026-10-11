@@ -1,0 +1,13 @@
+version = 0.1
+
+[staging.deploy.parameters]
+stack_name = "refunds-staging"
+region = "ap-southeast-2"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Stage=staging"
+
+[production.deploy.parameters]
+stack_name = "refunds-production"
+region = "ap-southeast-2"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Stage=production"

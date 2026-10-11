@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Refund eligibility functions
+
+Parameters:
+  Stage:
+    Type: String
+    AllowedValues: [staging, production]
+
+Resources:
+  RefundsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "refunds-${Stage}"
+      CodeUri: functions/
+      Handler: refunds.handler.handler
+      Runtime: python3.13
+      MemorySize: 128
+      Timeout: 5
+      Events:
+        Check:
+          Type: Api
+          Properties: {Path: /refunds/eligible, Method: post}
